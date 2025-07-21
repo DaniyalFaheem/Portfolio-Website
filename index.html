@@ -3,207 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniyal Faheem /// Cyber Security Architect</title>
+    <title>Daniyal Faheem | Cybersecurity Analyst & Penetration Tester</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'kali-bg': '#0A0A0A',
+                        'kali-green': '#00FF41',
+                        'kali-dark-green': '#008F11',
+                        'kali-gray': '#BDBDBD',
+                    },
+                    fontFamily: {
+                        'mono': ['"SF Mono"', '"Courier New"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'green-glow': '0 0 20px rgba(0, 255, 65, 0.6), 0 0 8px rgba(0, 255, 65, 0.8)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
     <style>
-        :root {
-            --primary-color: #DC143C; /* Crimson Red */
-            --background-color: #000000;
-            --text-color: #FFFFFF;
-            --card-bg-color: rgba(15, 0, 0, 0.5);
-            --border-color: rgba(220, 20, 60, 0.4);
-        }
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #0A0A0A;
+            color: #BDBDBD;
+            font-family: 'mono', monospace;
         }
-        #vanta-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
         }
-        h1, h2, h3, .accent-text {
-            font-family: 'Exo 2', sans-serif;
-            letter-spacing: 0.03em;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(220, 20, 60, 0.7);
+        
+        main, header {
+            position: relative;
+            z-index: 1;
         }
-        .section-title {
-            font-size: 3.2rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 70px;
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            visibility: hidden;
         }
-        .card {
-            background: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px) saturate(120%);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(220, 20, 60, 0.2);
+
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 65, 0.15);
+            border-radius: 0.75rem;
+            transition: background 0.3s, border 0.3s;
         }
-        .card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 0 35px rgba(220, 20, 60, 0.5);
+        .glass-panel:hover {
+            background: rgba(0, 255, 65, 0.03);
+            border: 1px solid rgba(0, 255, 65, 0.3);
         }
-        .glow-button {
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 700;
-            color: var(--text-color);
-            background-color: var(--primary-color);
-            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), inset 0 0 10px rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
         }
-        .glow-button:hover {
-            box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color), 0 0 60px #ff00ff, inset 0 0 20px rgba(255, 255, 255, 0.5);
-            transform: scale(1.05);
+        .cert-badge {
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .nav-link {
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 700;
-            color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-        .nav-link:hover {
-            background-color: rgba(220, 20, 60, 0.15);
-            color: var(--primary-color);
-            text-shadow: 0 0 8px var(--primary-color);
+        .cert-badge:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5), 0 0 5px rgba(0, 255, 65, 0.7);
         }
     </style>
 </head>
-<body>
-    <div id="vanta-bg"></div>
+<body class="bg-kali-bg">
 
-    <header class="py-4 text-white bg-transparent fixed w-full z-20 top-0">
-        <div class="container mx-auto flex justify-between items-center px-6">
-            <a href="#" class="text-4xl font-black accent-text" style="filter: drop-shadow(0 0 8px var(--primary-color));">DF</a>
-            <nav class="hidden md:flex items-center space-x-4 text-lg">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#contact" class="py-2 px-5 rounded-md transition transform glow-button">Initiate Contact</a>
-            </nav>
-        </div>
+    <!-- 3D Matrix Background Canvas -->
+    <div id="matrix-bg"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full p-5 flex justify-between items-center bg-kali-bg bg-opacity-80 backdrop-blur-sm z-50">
+        <div class="text-2xl font-bold text-kali-green tracking-widest text-glow">DANIYAL FAHEEM</div>
+        <nav class="hidden md:flex items-center">
+            <a href="#hero" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Home</a>
+            <a href="#summary" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Profile</a>
+            <a href="#experience" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Experience</a>
+            <a href="#expertise" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Expertise</a>
+            <a href="#casestudies" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Case Studies</a>
+            <a href="#contact" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Contact</a>
+        </nav>
     </header>
 
-    <main class="relative z-10">
-        <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4" id="hero-title"></h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl font-light" style="line-height: 1.6;">Architect of Digital Defenses & Specialist in Offensive Security</p>
-        </section>
-
-        <section id="about" class="section">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-5 gap-16 items-center">
-                <div class="md:col-span-3 about-content">
-                    <h2 class="text-4xl font-bold mb-6">Mission Profile</h2>
-                    <p class="text-lg leading-relaxed mb-4">
-                        As a dedicated and ambitious specialist, I am currently sharpening my expertise by pursuing a **Bachelor of Science in Cyber Security**. This academic foundation complements my hands-on experience, providing a deep, theoretical understanding of the complex threat landscapes I navigate.
-                    </p>
-                    <p class="text-lg leading-relaxed">
-                        My professional journey is defined by a proactive, offensive-security mindset. Through intensive internships at <span class="font-semibold text-red-300">DevelopersHub Corporation©</span> and <span class="font-semibold text-red-300">National CERT – Pakistan</span>, I have moved beyond theory to actively dismantle threats and fortify digital defenses. My work is not just a job; it is a commitment to mastering the art of digital warfare to ensure robust security.
-                    </p>
-                </div>
-                <div class="md:col-span-2 card p-8 about-card">
-                    <h3 class="text-2xl font-bold mb-4">Core Philosophy</h3>
-                    <p class="text-lg leading-relaxed">"To build an impenetrable fortress, you must first think like the enemy who would tear it down. True security is born from understanding the attack."</p>
-                    <i class="fas fa-skull-crossbones fa-6x text-red-900 opacity-20 absolute right-4 bottom-4"></i>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="h-screen flex items-center justify-center text-center px-4">
+            <div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-wider reveal">DANIYAL FAHEEM</h1>
+                <p class="text-2xl md:text-3xl text-kali-green font-mono text-glow reveal">Cybersecurity Analyst | Penetration Tester | Ethical Hacker</p>
+                <div class="mt-8 reveal">
+                    <a href="https://www.linkedin.com/in/daniyalfaheem1" target="_blank" rel="noopener noreferrer" class="text-4xl mx-4 text-kali-gray hover:text-kali-green transition-transform duration-300 hover:scale-110 inline-block">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                     <a href="mailto:daniyalfaheem.cyber@gmail.com" class="text-4xl mx-4 text-kali-gray hover:text-kali-green transition-transform duration-300 hover:scale-110 inline-block">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
         </section>
         
-        <section id="experience" class="section">
-            <h2 class="section-title">Professional Engagements</h2>
-            <div class="max-w-4xl mx-auto space-y-8">
-                <div class="card experience-card">
-                    <h3 class="text-2xl font-bold mb-2">Cyber Security Intern</h3>
-                    <p class="font-semibold text-lg mb-3 text-red-300">DevelopersHub Corporation©</p>
-                    <p class="text-gray-200 leading-relaxed">Deployed within a live security operations center (SOC), tasked with real-time threat analysis, incident response simulations, and hardening network infrastructure against emerging threats.</p>
-                </div>
-                <div class="card experience-card">
-                    <h3 class="text-2xl font-bold mb-2">Penetration Testing Intern</h3>
-                    <p class="font-semibold text-lg mb-3 text-red-300">National CERT – Pakistan</p>
-                    <p class="text-gray-200 leading-relaxed">Led authorized red team exercises against critical government infrastructure. Specialized in web application exploitation, network reconnaissance, and delivering actionable vulnerability reports to key stakeholders.</p>
+        <!-- Professional Summary Section -->
+        <section id="summary" class="py-24 px-6">
+            <div class="container mx-auto max-w-4xl glass-panel p-10 reveal">
+                <h2 class="text-4xl font-bold text-center mb-8 text-kali-green font-mono text-glow">PROFESSIONAL_SYNOPSIS.txt</h2>
+                <p class="text-lg text-center leading-relaxed">
+                    A technically proficient and driven cybersecurity professional with a strong foundation in both offensive security tactics and defensive infrastructure management. My hands-on experience, gained through internships with the <strong class="text-kali-green">National CERT</strong> and <strong class="text-kali-green">DevelopersHub Corporation</strong>, is complemented by a passion for education and knowledge-sharing, demonstrated in my role as a Teacher Assistant for advanced cybersecurity labs. I excel at identifying vulnerabilities, configuring secure systems, and communicating complex security concepts, making me a versatile and impactful asset to any security team.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-24 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">./PROFESSIONAL_DEPLOYMENTS</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-2xl font-bold text-white">Penetration Testing Intern</h3>
+                        <p class="text-kali-green text-lg font-mono mt-1">National CERT – Pakistan</p>
+                        <p class="mt-3">Conducted comprehensive penetration tests on critical systems. Specialized in network discovery, vulnerability analysis, and exploit execution to identify and report security flaws before they could be leveraged by adversaries.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-2xl font-bold text-white">Cyber Security Intern</h3>
+                        <p class="text-kali-green text-lg font-mono mt-1">DevelopersHub Corporation©</p>
+                        <p class="mt-3">Contributed to core security functions, including infrastructure configuration and virtualization. Focused on creating secure, sandboxed environments for testing and experimentation, hardening systems against potential threats.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6 lg:col-span-1 md:col-span-2">
+                        <h3 class="text-2xl font-bold text-white">Teacher Assistant</h3>
+                        <p class="text-kali-green text-lg font-mono mt-1">Cybersecurity & Networking Labs</p>
+                        <p class="mt-3">Mentored students in advanced cybersecurity topics, including Python/Bash scripting, firewall configuration, and the use of tools like Metasploit and VirtualBox. Fostered a hands-on learning environment, reinforcing complex concepts through practical application.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="section">
-            <h2 class="section-title">Technical Arsenal</h2>
-            <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center">
-                <div class="card skill-card p-6"><i class="fas fa-python fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Python & Bash</p></div>
-                <div class="card skill-card p-6"><i class="fas fa-server fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Server Hardening</p></div>
-                <div class="card skill-card p-6"><i class="fas fa-shield-virus fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Metasploit</p></div>
-                <div class="card skill-card p-6"><i class="fas fa-network-wired fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Network Analysis</p></div>
-                <div class="card skill-card p-6"><i class="fas fa-fire-alt fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Firewall Management</p></div>
-                <div class="card skill-card p-6"><i class="fas fa-docker fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Virtualization</p></div>
-                <div class="card skill-card p-6"><i class="fas fa-bug fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Red Teaming</p></div>
-                <div class="card skill-card p-6"><i class="fas fa-user-ninja fa-3x mb-3 text-red-400"></i><p class="font-semibold text-white text-lg">Ethical Hacking</p></div>
+        <!-- Domains of Expertise Section -->
+        <section id="expertise" class="py-24 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">cat /etc/domains_of_expertise</h2>
+                <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-lg">
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-2xl text-white font-bold mb-4 flex items-center"><i class="fas fa-bug-slash text-kali-green mr-3"></i>Offensive Security</h3>
+                        <ul class="list-disc list-inside space-y-2 expertise-list">
+                            <li>Web Application Pentesting</li>
+                            <li>Network Vulnerability Analysis</li>
+                            <li>Exploitation Frameworks</li>
+                            <li>Social Engineering Tactics</li>
+                        </ul>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-2xl text-white font-bold mb-4 flex items-center"><i class="fas fa-server text-kali-green mr-3"></i>Infrastructure Security</h3>
+                        <ul class="list-disc list-inside space-y-2 expertise-list">
+                            <li>Secure Server Configuration</li>
+                            <li>Firewall Policy Management</li>
+                            <li>Virtualization Security (VirtualBox)</li>
+                            <li>Secure Network Design</li>
+                        </ul>
+                    </div>
+                     <div class="reveal glass-panel p-6">
+                        <h3 class="text-2xl text-white font-bold mb-4 flex items-center"><i class="fas fa-cogs text-kali-green mr-3"></i>Core Technologies</h3>
+                        <ul class="list-disc list-inside space-y-2 expertise-list">
+                            <li>Scripting (Python, Bash)</li>
+                            <li>Tooling: Metasploit, DVWA</li>
+                            <li>Network Protocol Analysis</li>
+                            <li>Web Technologies (HTML/CSS)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Case Studies Section -->
+        <section id="casestudies" class="py-24 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">./FEATURED_CASE_STUDIES</h2>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-2xl font-bold text-white">Case Study: Web App Pentest</h3>
+                        <p class="mt-3"><strong class="text-kali-green">Objective:</strong> To perform a black-box assessment of a web application to identify and exploit vulnerabilities and assess overall security posture.</p>
+                        <p class="mt-3"><strong class="text-kali-green">Methodology:</strong> Utilized WPScan for reconnaissance, identified user enumeration vectors, executed a credential brute-force attack, and successfully uncovered a hidden flag post-authentication.</p>
+                        <p class="mt-3"><strong class="text-kali-green">Outcome:</strong> Delivered a comprehensive report detailing the attack chain and providing actionable remediation guidance. This showcased a methodical approach to ethical hacking from reconnaissance to exploitation.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-2xl font-bold text-white">Case Study: Secure Lab Architecture</h3>
+                        <p class="mt-3"><strong class="text-kali-green">Objective:</strong> To design and deploy a secure, multi-tenant virtual environment for cybersecurity training and experimentation.</p>
+                         <p class="mt-3"><strong class="text-kali-green">Architecture:</strong> Configured a physical rack server with virtualization software, creating multiple isolated VMs. Enabled secure remote access via SSH for students to use dedicated, sandboxed environments.</p>
+                        <p class="mt-3"><strong class="text-kali-green">Impact:</strong> Provided a high-fidelity platform for students to safely conduct offensive security exercises. This project demonstrated advanced skills in system administration, secure configuration, and virtualization management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications -->
+        <section id="certifications" class="py-24 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">ls -l /etc/credentials</h2>
+                 <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white">Ethical Hacker</h4><p class="text-sm text-kali-gray">Cisco</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white">Intro to Cyber</h4><p class="text-sm text-kali-gray">Cisco</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white">Cybersecurity Basic</h4><p class="text-sm text-kali-gray">Cybrary</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white">Cyber Security</h4><p class="text-sm text-kali-gray">PFTP Diploma</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white">Ethical Hacking</h4><p class="text-sm text-kali-gray">PNY</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Security Philosophy Section -->
+        <section id="philosophy" class="py-24 px-6">
+            <div class="container mx-auto max-w-4xl glass-panel p-10 reveal">
+                <h2 class="text-4xl font-bold text-center mb-8 text-kali-green font-mono text-glow">SECURITY_PHILOSOPHY.conf</h2>
+                <p class="text-xl text-center leading-relaxed italic">
+                    "I believe security is not a product, but a process. It is an endless pursuit of resilience, achieved by thinking like the adversary to build defenses that are not just strong, but <strong class="text-kali-green">intelligent and adaptive</strong>."
+                </p>
             </div>
         </section>
 
-        <section id="contact" class="section text-center">
-            <h2 class="section-title">Establish Connection</h2>
-            <p class="max-w-2xl mx-auto mb-8 text-gray-200 text-lg leading-relaxed">My channels are open for new opportunities, collaborations, and complex challenges. Let's connect and secure the future.</p>
-            <a href="mailto:daniyalfaheem.cyber@gmail.com" class="inline-block py-4 px-10 rounded-md transition text-xl glow-button">
-                <i class="fas fa-paper-plane mr-3"></i> Transmit Message
-            </a>
-            <div class="mt-12 text-5xl space-x-8">
-                <a href="https://www.linkedin.com/in/daniyalfaheem1" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors duration-300 transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-6">
+            <div class="container mx-auto text-center max-w-3xl">
+                <h2 class="text-4xl font-bold text-center mb-8 text-kali-green font-mono reveal text-glow">Ready to Elevate Your Security Posture?</h2>
+                <p class="text-lg mb-8 reveal">I am currently available for challenging roles and collaborations where I can apply my expertise to solve complex security problems. If your organization values a proactive and strategic approach to security, let's connect.</p>
+                <a href="mailto:daniyalfaheem.cyber@gmail.com" class="inline-block text-kali-green p-4 border-2 border-kali-green rounded-full hover:bg-kali-green hover:text-kali-bg hover:shadow-green-glow transition-all duration-300 text-5xl reveal transform hover:scale-105">
+                    <i class="fas fa-paper-plane"></i>
+                </a>
             </div>
         </section>
     </main>
 
-    <script>
-        // Vanta.js 3D Network Background - CRIMSON THEME
-        VANTA.NET({
-            el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false,
-            minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00,
-            color: 0xdc143c, // Crimson Red
-            backgroundColor: 0x0, points: 12.00, maxDistance: 25.00, spacing: 18.00
-        });
-        
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Hero Text Glitch Animation
-        const heroTitle = document.getElementById('hero-title');
-        const trueText = 'DANIYAL FAHEEM';
-        const chars = '█▓▒░<ABCDEFGHIJKL>M*NOPQRSTUVWXYZ0123456789/[]{}';
-        let glitchInterval;
-        function startGlitch() {
-            let iteration = 0;
-            clearInterval(glitchInterval);
-            glitchInterval = setInterval(() => {
-                heroTitle.innerText = trueText.split("").map((letter, index) => {
-                    if (index < iteration) return trueText[index];
-                    return chars[Math.floor(Math.random() * chars.length)];
-                }).join("");
-                if (iteration >= trueText.length) clearInterval(glitchInterval);
-                iteration += 1 / 3;
-            }, 50);
-        }
-        startGlitch();
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
-        gsap.from("#hero p", { duration: 1.5, opacity: 0, y: 50, delay: 1, ease: 'power3.out' });
-        
-        // Staggered slide-in animations for all sections
-        gsap.utils.toArray('.about-content, .about-card, .experience-card, .skill-card').forEach(elem => {
-            gsap.from(elem, {
-                scrollTrigger: { trigger: elem, start: "top 85%", toggleActions: "play none none none" },
-                opacity: 0, scale: 0.95, y: 60, duration: 1, ease: 'power3.out'
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- GSAP + ScrollTrigger Animations ---
+            gsap.registerPlugin(ScrollTrigger);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(elem => {
+                const listItems = elem.querySelectorAll('.expertise-list li');
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+                
+                tl.fromTo(elem, 
+                    { opacity: 0, y: 50, autoAlpha: 0 },
+                    { opacity: 1, y: 0, autoAlpha: 1, duration: 1.2, ease: 'power4.out' }
+                );
+                
+                if (listItems.length > 0) {
+                    tl.fromTo(listItems, 
+                        { opacity: 0, x: -20 }, 
+                        { opacity: 1, x: 0, stagger: 0.15, ease: 'power4.out' },
+                        "-=0.8"
+                    );
+                }
             });
+
+            // --- Three.js Interactive & Full-Screen Matrix Background ---
+            let scene, camera, renderer, particles;
+            let mouseX = 0, mouseY = 0;
+
+            function initMatrix() {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 5;
+
+                const numParticles = 25000;
+                const positions = new Float32Array(numParticles * 3);
+                const velocities = new Float32Array(numParticles);
+                
+                const spread = 20;
+                for (let i = 0; i < numParticles; i++) {
+                    positions[i * 3] = (Math.random() - 0.5) * spread;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * spread;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * spread;
+                    velocities[i] = Math.random() * 0.015 + 0.005;
+                }
+                
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 1));
+                
+                const material = new THREE.PointsMaterial({
+                    color: 0x00ff41,
+                    size: 0.015,
+                    transparent: true,
+                    opacity: 0.7,
+                    blending: THREE.AdditiveBlending
+                });
+
+                particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.getElementById('matrix-bg').appendChild(renderer.domElement);
+                
+                document.body.addEventListener('mousemove', onDocumentMouseMove, false);
+                window.addEventListener('resize', onWindowResize, false);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function onDocumentMouseMove(event) {
+                mouseX = (event.clientX - window.innerWidth / 2) / 200;
+                mouseY = (event.clientY - window.innerHeight / 2) / 200;
+            }
+
+            function animateMatrix() {
+                requestAnimationFrame(animateMatrix);
+                renderMatrix();
+            }
+
+            function renderMatrix() {
+                const positions = particles.geometry.attributes.position.array;
+                const velocities = particles.geometry.attributes.velocity.array;
+                const yBoundary = 10;
+
+                for (let i = 0; i < positions.length / 3; i++) {
+                    positions[i * 3 + 1] -= velocities[i];
+                    if (positions[i * 3 + 1] < -yBoundary) {
+                        positions[i * 3 + 1] = yBoundary;
+                    }
+                }
+                particles.geometry.attributes.position.needsUpdate = true;
+
+                camera.position.x += (mouseX - camera.position.x) * .05;
+                camera.position.y += (-mouseY - camera.position.y) * .05;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
+            }
+            
+            initMatrix();
+            animateMatrix();
         });
     </script>
+
 </body>
 </html>
