@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniyal Faheem | Cybersecurity Analyst & Penetration Tester</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'kali-bg': '#0A0A0A',
+                        'kali-green': '#00FF41',
+                        'kali-dark-green': '#008F11',
+                        'kali-gray': '#BDBDBD',
+                    },
+                    fontFamily: {
+                        'mono': ['"SF Mono"', '"Courier New"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'green-glow': '0 0 20px rgba(0, 255, 65, 0.6), 0 0 8px rgba(0, 255, 65, 0.8)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            overflow-x: hidden;
+            background-color: #0A0A0A;
+            color: #BDBDBD;
+            font-family: 'mono', monospace;
+        }
+
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+        }
+        
+        main, header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            visibility: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 65, 0.15);
+            border-radius: 0.75rem;
+            transition: background 0.3s, border 0.3s;
+        }
+        .glass-panel:hover {
+            background: rgba(0, 255, 65, 0.03);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+        }
+        .cert-badge {
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cert-badge:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5), 0 0 5px rgba(0, 255, 65, 0.7);
+        }
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-kali-bg">
+
+    <!-- 3D Matrix Background Canvas -->
+    <div id="matrix-bg"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full p-5 flex justify-between items-center bg-kali-bg bg-opacity-80 backdrop-blur-sm z-50">
+        <div class="text-xl md:text-2xl font-bold text-kali-green tracking-widest text-glow">DANIYAL FAHEEM</div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center">
+            <a href="#hero" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Home</a>
+            <a href="#summary" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Profile</a>
+            <a href="#experience" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Experience</a>
+            <a href="#projects" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Projects</a>
+            <a href="#skills" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Skills</a>
+            <a href="#contact" class="mx-3 text-lg hover:text-kali-green hover:text-glow transition-colors duration-300">Contact</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-kali-bg bg-opacity-95 z-40 flex flex-col items-center justify-center text-center">
+        <a href="#hero" class="mobile-menu-link text-3xl my-4 hover:text-kali-green">Home</a>
+        <a href="#summary" class="mobile-menu-link text-3xl my-4 hover:text-kali-green">Profile</a>
+        <a href="#experience" class="mobile-menu-link text-3xl my-4 hover:text-kali-green">Experience</a>
+        <a href="#projects" class="mobile-menu-link text-3xl my-4 hover:text-kali-green">Projects</a>
+        <a href="#skills" class="mobile-menu-link text-3xl my-4 hover:text-kali-green">Skills</a>
+        <a href="#contact" class="mobile-menu-link text-3xl my-4 hover:text-kali-green">Contact</a>
+    </div>
+
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="h-screen flex items-center justify-center text-center px-4">
+            <div>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4 tracking-wider reveal">DANIYAL FAHEEM</h1>
+                <p class="text-xl sm:text-2xl md:text-3xl text-kali-green font-mono text-glow reveal">Cybersecurity Analyst | Penetration Tester | Ethical Hacker</p>
+                <div class="mt-8 reveal">
+                    <a href="https://www.linkedin.com/in/daniyalfaheem1" target="_blank" rel="noopener noreferrer" class="text-4xl mx-4 text-kali-gray hover:text-kali-green transition-transform duration-300 hover:scale-110 inline-block">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                     <a href="mailto:daniyalfaheem.cyber@gmail.com" class="text-4xl mx-4 text-kali-gray hover:text-kali-green transition-transform duration-300 hover:scale-110 inline-block">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Professional Summary Section -->
+        <section id="summary" class="py-20 px-6">
+            <div class="container mx-auto max-w-4xl glass-panel p-6 md:p-10 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-kali-green font-mono text-glow">
+                    Professional Synopsis
+                </h2>
+                <p class="text-base md:text-lg text-center leading-relaxed">
+                    A results-driven cybersecurity leader with hands-on experience in penetration testing, security auditing, and team management. My background includes internships with <strong class="text-kali-green">National CERT Pakistan</strong> and <strong class="text-kali-green">DevelopersHub</strong>, where I honed skills in incident response, vulnerability assessment, and securing critical infrastructure. As a <strong class="text-kali-green">Team Lead at Black Byt3</strong>, I currently manage projects, mentor junior talent, and execute offensive security operations. I am passionate about building resilient systems and fostering a proactive security culture.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">
+                    Professional Experience
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Team Lead</h3>
+                        <p class="text-lg font-mono mt-1 text-kali-green">Black Byt3</p>
+                        <p class="mt-3 text-base">Lead a cybersecurity team in penetration testing operations. Responsible for project management, mentoring interns, and ensuring the successful execution of security assessments.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Cyber Security Intern</h3>
+                        <p class="text-lg font-mono mt-1 text-kali-green">DevelopersHub©</p>
+                        <p class="mt-3 text-base">Performed security audits and penetration tests on applications and networks. Contributed to securing infrastructure and implementing defensive measures against threats.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Intern</h3>
+                        <p class="text-lg font-mono mt-1 text-kali-green">National CERT – Pakistan</p>
+                        <p class="mt-3 text-base">Assisted government teams with incident response, conducted vulnerability assessments on national infrastructure, and contributed to threat intelligence gathering and analysis.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Teacher Assistant</h3>
+                        <p class="text-lg font-mono mt-1 text-kali-green">Cybersecurity & Networking Labs</p>
+                        <p class="mt-3 text-base">Taught scripting with Python/Bash, server/firewall configuration, and offensive tools like Metasploit. Guided students in practical, hands-on lab environments.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Cyber Security Intern</h3>
+                        <p class="text-lg font-mono mt-1 text-kali-green">PFTP</p>
+                        <p class="mt-3 text-base">Completed a comprehensive 3-month internship focused on core cybersecurity principles, defensive strategies, and ethical hacking methodologies.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Server Configuration</h3>
+                        <p class="text-lg font-mono mt-1 text-kali-green">Virtualization Specialist</p>
+                        <p class="mt-3 text-base">Designed and deployed a secure lab environment on a physical rack server. Configured multiple isolated VMs with secure SSH access for student training.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">
+                    Featured Projects
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-base">
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Face Recognition Attendance</h3>
+                        <p class="mt-3"><strong class="text-kali-green">Tech:</strong> Python, DeepFace, WhatsApp API.</p>
+                        <p class="mt-3">Developed a comprehensive attendance system with separate admin/user panels. Automated payroll for faculty and sent real-time attendance alerts via WhatsApp.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Cyber Siege Hackathon</h3>
+                        <p class="mt-3"><strong class="text-kali-green">Role:</strong> Organizer & CTF Challenge Designer.</p>
+                        <p class="mt-3">Led the organization of a major hackathon. Designed and deployed Capture The Flag (CTF) challenges, managed event logistics, and coordinated with participants.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6 md:col-span-2 lg:col-span-1">
+                        <h3 class="text-xl md:text-2xl font-bold text-white">Web App Pentest Exercise</h3>
+                        <p class="mt-3"><strong class="text-kali-green">Tools:</strong> WPScan, Brute-force scripts.</p>
+                        <p class="mt-3">Executed a black-box penetration test on a web application. Successfully identified user enumeration vectors, performed a brute-force login, and documented the flag.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 px-6">
+            <div class="container mx-auto max-w-4xl glass-panel p-6 md:p-10 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-kali-green font-mono text-glow">
+                    Education
+                </h2>
+                <div class="text-center">
+                    <h3 class="text-xl md:text-2xl text-white font-bold">BS Cyber Security (In Progress)</h3>
+                    <p class="text-lg text-kali-gray">Minhaj University</p>
+                    <hr class="border-kali-dark-green my-4 mx-auto w-1/4">
+                    <h3 class="text-xl md:text-2xl text-white font-bold mt-4">ICS Physics (2021-2023)</h3>
+                    <p class="text-lg text-kali-gray">Punjab College</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">
+                    Technical Skills
+                </h2>
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-base">
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl text-white font-bold mb-4 flex items-center"><i class="fas fa-bug-slash text-kali-green mr-3"></i>Offensive Security</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Vulnerability Assessment</li>
+                            <li>Penetration Testing</li>
+                            <li>Metasploit Framework</li>
+                            <li>DVWA</li>
+                        </ul>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl text-white font-bold mb-4 flex items-center"><i class="fas fa-server text-kali-green mr-3"></i>Infrastructure</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Server Deployment</li>
+                            <li>Firewall Management</li>
+                            <li>VirtualBox & Virtualization</li>
+                            <li>Networking</li>
+                        </ul>
+                    </div>
+                     <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl text-white font-bold mb-4 flex items-center"><i class="fas fa-code text-kali-green mr-3"></i>Languages & Dev</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Python Scripting</li>
+                            <li>Bash Scripting</li>
+                            <li>HTML / CSS</li>
+                        </ul>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <h3 class="text-xl text-white font-bold mb-4 flex items-center"><i class="fas fa-users text-kali-green mr-3"></i>Soft Skills</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Leadership</li>
+                            <li>Project Management</li>
+                            <li>Teamwork & Collaboration</li>
+                            <li>Critical Thinking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications -->
+        <section id="certifications" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-kali-green font-mono reveal text-glow">
+                    Certifications
+                </h2>
+                 <div class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 text-center">
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white text-sm">Ethical Hacker</h4><p class="text-xs text-kali-gray">Cisco Networking Academy</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white text-sm">Intro to Cybersecurity</h4><p class="text-xs text-kali-gray">Cisco Networking Academy</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white text-sm">Ethical Hacking</h4><p class="text-xs text-kali-gray">PNY (3 Months)</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white text-sm">Cybersecurity Diploma</h4><p class="text-xs text-kali-gray">PFTP (1 Year)</p></div>
+                    <div class="reveal cert-badge p-4 rounded-lg bg-black bg-opacity-50 col-span-2 sm:col-span-1"><i class="fas fa-award text-3xl text-kali-green mb-2"></i><h4 class="font-bold text-white text-sm">Cybersecurity Basic</h4><p class="text-xs text-kali-gray">Cybrary</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-6">
+            <div class="container mx-auto text-center max-w-3xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-kali-green font-mono reveal text-glow">Get In Touch</h2>
+                <p class="text-base md:text-lg mb-8 reveal">I am actively seeking challenging roles where I can apply my leadership and technical expertise to solve complex security problems. If your organization values a proactive and strategic approach to cybersecurity, let's connect.</p>
+                <a href="mailto:daniyalfaheem.cyber@gmail.com" class="inline-block text-kali-green p-4 border-2 border-kali-green rounded-full hover:bg-kali-green hover:text-kali-bg hover:shadow-green-glow transition-all duration-300 text-5xl reveal transform hover:scale-105">
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Mobile Menu Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+
+            // --- GSAP + ScrollTrigger Animations ---
+            gsap.registerPlugin(ScrollTrigger);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(elem => {
+                gsap.fromTo(elem, 
+                    { opacity: 0, y: 50, autoAlpha: 0 },
+                    { 
+                        opacity: 1, y: 0, autoAlpha: 1, duration: 1.2, ease: 'power4.out',
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+
+            // --- Three.js Interactive & Full-Screen Matrix Background ---
+            let scene, camera, renderer, particles;
+            let mouseX = 0, mouseY = 0;
+
+            function initMatrix() {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 5;
+
+                const numParticles = window.innerWidth < 768 ? 5000 : 25000;
+                const positions = new Float32Array(numParticles * 3);
+                const velocities = new Float32Array(numParticles);
+                
+                const spread = 20;
+                for (let i = 0; i < numParticles; i++) {
+                    positions[i * 3] = (Math.random() - 0.5) * spread;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * spread;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * spread;
+                    velocities[i] = Math.random() * 0.015 + 0.005;
+                }
+                
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 1));
+                
+                const material = new THREE.PointsMaterial({
+                    color: 0x00ff41,
+                    size: 0.015,
+                    transparent: true,
+                    opacity: 0.7,
+                    blending: THREE.AdditiveBlending
+                });
+
+                particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.getElementById('matrix-bg').appendChild(renderer.domElement);
+                
+                document.body.addEventListener('mousemove', onDocumentMouseMove, false);
+                window.addEventListener('resize', onWindowResize, false);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function onDocumentMouseMove(event) {
+                mouseX = (event.clientX - window.innerWidth / 2) / 200;
+                mouseY = (event.clientY - window.innerHeight / 2) / 200;
+            }
+
+            function animateMatrix() {
+                requestAnimationFrame(animateMatrix);
+                renderMatrix();
+            }
+
+            function renderMatrix() {
+                const positions = particles.geometry.attributes.position.array;
+                const velocities = particles.geometry.attributes.velocity.array;
+                const yBoundary = 10;
+
+                for (let i = 0; i < positions.length / 3; i++) {
+                    positions[i * 3 + 1] -= velocities[i];
+                    if (positions[i * 3 + 1] < -yBoundary) {
+                        positions[i * 3 + 1] = yBoundary;
+                    }
+                }
+                particles.geometry.attributes.position.needsUpdate = true;
+
+                camera.position.x += (mouseX - camera.position.x) * .05;
+                camera.position.y += (-mouseY - camera.position.y) * .05;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
+            }
+            
+            initMatrix();
+            animateMatrix();
+        });
+    </script>
+
+</body>
+</html>
